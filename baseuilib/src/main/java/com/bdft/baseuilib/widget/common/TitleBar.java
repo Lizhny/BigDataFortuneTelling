@@ -35,10 +35,10 @@ import java.lang.annotation.RetentionPolicy;
 public class TitleBar extends FrameLayout implements View.OnClickListener, View.OnLongClickListener {
     private LinearLayout ll_left;
     private ImageView iv_left;
-    private TextView tx_left;
+    private TextView tv_left;
     private LinearLayout ll_right;
     private ImageView iv_right;
-    private TextView tx_right;
+    private TextView tv_right;
     private TextView title;
 
     @Retention(RetentionPolicy.SOURCE)
@@ -71,11 +71,11 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
         View.inflate(context, R.layout.widget_title_bar, this);
         ll_left = (LinearLayout) findViewById(R.id.ll_title_bar_left);
         iv_left = (ImageView) findViewById(R.id.ic_title_bar_left);
-        tx_left = (TextView) findViewById(R.id.tx_title_bar_left);
+        tv_left = (TextView) findViewById(R.id.tx_title_bar_left);
 
         ll_right = (LinearLayout) findViewById(R.id.ll_title_bar_right);
         iv_right = (ImageView) findViewById(R.id.ic_title_bar_right);
-        tx_right = (TextView) findViewById(R.id.tx_title_bar_right);
+        tv_right = (TextView) findViewById(R.id.tx_title_bar_right);
 
         title = (TextView) findViewById(R.id.tx_title);
         this.setBackgroundColor(UIUtils.INSTANCE.getResourceColor(R.color.action_bar_bg));
@@ -163,10 +163,46 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
     public void setRightIcon(int resId) {
         try {
             iv_right.setImageResource(resId);
-            setShowLeftIcon(resId != 0);
+            setShowRightIcon(resId != 0);
         } catch (Exception e) {
             KLog.e(e);
         }
+    }
+
+    public void setLeftText(String leftText) {
+        if (TextUtils.isEmpty(leftText)) {
+            tv_left.setText("");
+        } else {
+            tv_left.setText(leftText);
+        }
+    }
+
+    public void setLeftText(@StringRes int resId) {
+        if (resId > 0) {
+            tv_left.setText(resId);
+        }
+    }
+
+    public void setRightText(String rightText) {
+        if (TextUtils.isEmpty(rightText)) {
+            tv_right.setText("");
+        } else {
+            tv_right.setText(rightText);
+        }
+    }
+
+    public void setRightText(@StringRes int resId) {
+        if (resId > 0) {
+            tv_right.setText(resId);
+        }
+    }
+
+    public void setLeftTextColor(@ColorRes int resId) {
+        tv_left.setTextColor(UIUtils.INSTANCE.getResourceColor(resId));
+    }
+
+    public void setRigTextColor(@ColorRes int resId) {
+        tv_left.setTextColor(UIUtils.INSTANCE.getResourceColor(resId));
     }
 
 
