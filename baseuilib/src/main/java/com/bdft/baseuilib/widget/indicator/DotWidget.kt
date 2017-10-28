@@ -7,6 +7,7 @@ import android.graphics.drawable.ShapeDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 
@@ -98,11 +99,33 @@ class DotWidget @JvmOverloads constructor(
         mFadeIn = AlphaAnimation(0f,1f)
         mFadeIn.setInterpolator(DecelerateInterpolator())
         mFadeIn.duration=450
+        mFadeIn.setAnimationListener(mAnimListener)
 
         mFadeOut = AlphaAnimation(0f,1f)
         mFadeOut.setInterpolator(DecelerateInterpolator())
         mFadeOut.duration=450
+        mFadeOut.setAnimationListener(mAnimListener)
+    }
 
+    var mAnimListener =object :Animation.AnimationListener{
+        override fun onAnimationRepeat(p0: Animation?) {
+
+        }
+
+        override fun onAnimationEnd(p0: Animation?) {
+            mIsShowing=!mIsShowing
+            visibility = if (mIsShowing){
+                VISIBLE
+            }else{
+                GONE
+            }
+
+        }
+
+        override fun onAnimationStart(p0: Animation?) {
+
+        }
 
     }
+
 }
