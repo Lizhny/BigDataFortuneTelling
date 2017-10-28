@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "25.0.0",
             minSdkVersion    : 17,
             targetSdkVersion : 25,
-            versionCode      : 5,
-            versionName      : "1.6"
+            versionCode      : 1,
+            versionName      : "1.0"
     ]
 
     baselib = [
@@ -17,21 +17,6 @@ ext {
     baseuilib = [
             versionCode: 2,
             versionName: "1.1"
-    ]
-
-    imagelib = [
-            versionCode: 1,
-            versionName: "1.0"
-    ]
-
-    photoselect = [
-            versionCode: 1,
-            versionName: "1.0"
-    ]
-
-    publish = [
-            versionCode: 1,
-            versionName: "1.0"
     ]
 
     dependencies = [
