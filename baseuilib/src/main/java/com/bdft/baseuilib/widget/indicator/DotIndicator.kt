@@ -1,7 +1,6 @@
 package com.bdft.baseuilib.widget.indicator
 
 import android.content.Context
-import android.nfc.Tag
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
@@ -55,7 +54,7 @@ class DotIndicator @JvmOverloads constructor(
             if (i == 0) {
                 params.leftMargin = 0
             } else {
-                params.leftMargin = UIUtils.dip2Px(6f)
+                params.leftMargin = UIUtils.dip2PxToInt(6f)
             }
             addView(dotView, params)
             mDotViews.add(dotView)

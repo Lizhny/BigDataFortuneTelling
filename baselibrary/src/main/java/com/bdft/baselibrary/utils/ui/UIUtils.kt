@@ -19,8 +19,11 @@ import com.socks.library.KLog
 
 object UIUtils {
 
-    fun dip2Px(dip: Float): Int =
+    fun dip2PxToInt(dip: Float): Int =
             (dip * AppContext.getResources().displayMetrics.density + 0.5f).toInt()
+
+    fun dip2PxToFloat(dip: Int): Float =
+            (dip * AppContext.getResources().displayMetrics.density + 0.5f)
 
     fun px2Dip(px: Float): Int =
             (px / AppContext.getResources().displayMetrics.density + 0.5f).toInt()
