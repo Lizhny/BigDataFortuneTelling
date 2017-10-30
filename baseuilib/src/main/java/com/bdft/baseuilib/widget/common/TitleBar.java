@@ -10,19 +10,15 @@ import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bdft.baselibrary.base.AppContext;
 import com.bdft.baselibrary.utils.ui.UIUtils;
 import com.bdft.baseuilib.R;
+import com.bdft.baseuilib.widget.indicator.DotWidget;
 import com.socks.library.KLog;
-
-import org.w3c.dom.Text;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -212,6 +208,15 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
 
     public void setShowRightIcon(boolean isShow) {
         iv_right.setVisibility(isShow ? VISIBLE : GONE);
+    }
+
+    DotWidget mLeftDotWidget;
+    public void setLeftRedDotShow(boolean isShow){
+        if (iv_left.getVisibility()!=VISIBLE)return;
+        if (mLeftDotWidget==null){
+            mLeftDotWidget=new DotWidget(getContext(),iv_left);
+//            mLeftDotWidget.
+        }
     }
 
 

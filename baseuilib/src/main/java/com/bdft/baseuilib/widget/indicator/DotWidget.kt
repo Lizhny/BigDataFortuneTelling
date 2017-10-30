@@ -139,15 +139,15 @@ class DotWidget @JvmOverloads constructor(
         parent.invalidate()
     }
 
-    private fun show() {
+    public fun show() {
         show(false)
     }
 
-    private fun show(needAnim: Boolean) {
+    public fun show(needAnim: Boolean) {
         show(needAnim, mFadeIn)
     }
 
-    private fun show(needAnim: Boolean, animation: Animation) {
+    private fun show(needAnim: Boolean, animation: Animation?) {
         if (mIsShowing) return
         if (background == null || mNeedReDraw || mDotBackground == null) {
             mDotBackground = getDotBackground()
@@ -166,6 +166,52 @@ class DotWidget @JvmOverloads constructor(
         }
         mNeedReDraw = false
     }
+
+    public fun hide() {
+        hide(false)
+    }
+
+    public fun hide(needAnim: Boolean) {
+        hide(needAnim, mFadeOut)
+    }
+
+    private fun hide(needAnim: Boolean, animation: Animation?) {
+        if (!isShown) return
+        if (needAnim) {
+            clearAnimation()
+            startAnimation(animation)
+        } else {
+            alpha = 0F
+            visibility = GONE
+            mIsShowing = false
+        }
+    }
+
+    public fun toggle() {
+        toggle(false)
+    }
+
+    public fun toggle(needAnim: Boolean) {
+        toggle(needAnim, mFadeIn, mFadeOut)
+    }
+
+    private fun toggle(needAnim: Boolean, enterAnim: Animation?, exitAnim: Animation?) {
+        if (isShown) {
+            hide(needAnim && exitAnim != null, exitAnim)
+        } else {
+            show(needAnim && enterAnim != null, enterAnim)
+        }
+    }
+
+    public fun setDotMatgins(left:Int,top:Int,right:Int,bottom:Int){
+        val absLeft=Math.abs(UIUtils.dip2PxToFloat(left))
+        val absTop=Math.abs(UIUtils.dip2PxToFloat(top))
+        val absRight=Math.abs(UIUtils.dip2PxToFloat(right))
+        val absBottom=Math.abs(UIUtils.dip2PxToFloat(bottom))
+
+//        when
+    }
+
 
     private fun initDotParams(mDotSize: Int) {
         val dotWeightWidth = UIUtils.dip2PxToInt(mDotSize.toFloat())
