@@ -50,11 +50,11 @@ class DotIndicator @JvmOverloads constructor(
         for (i in 0..mDotNum) {
             val dotView = DotView(context)
             dotView.isSelected = false
-            val params = LayoutParams(UIUtils.px2Dip(DOT_SIZE.toFloat()), UIUtils.px2Dip(DOT_SIZE.toFloat()))
+            val params = LayoutParams(UIUtils.px2Dip(DOT_SIZE).toInt(), UIUtils.px2Dip(DOT_SIZE).toInt())
             if (i == 0) {
                 params.leftMargin = 0
             } else {
-                params.leftMargin = UIUtils.dip2PxToInt(6f)
+                params.leftMargin = UIUtils.dip2Px(6f).toInt()
             }
             addView(dotView, params)
             mDotViews.add(dotView)

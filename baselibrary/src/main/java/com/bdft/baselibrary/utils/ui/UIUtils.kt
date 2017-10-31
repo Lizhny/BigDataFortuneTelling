@@ -19,17 +19,23 @@ import com.socks.library.KLog
 
 object UIUtils {
 
-    fun dip2PxToInt(dip: Float): Int =
-            (dip * AppContext.getResources().displayMetrics.density + 0.5f).toInt()
-
-    fun dip2PxToFloat(dip: Int): Float =
+    fun dip2Px(dip: Float): Float =
             (dip * AppContext.getResources().displayMetrics.density + 0.5f)
 
-    fun px2Dip(px: Float): Int =
-            (px / AppContext.getResources().displayMetrics.density + 0.5f).toInt()
+    fun dip2Px(dip: Int): Float =
+            (dip * AppContext.getResources().displayMetrics.density + 0.5f)
 
-    fun sp2Px(sp: Float): Int =
-            (sp * AppContext.getResources().displayMetrics.scaledDensity + 0.5f).toInt()
+    fun px2Dip(px: Float): Float =
+            (px / AppContext.getResources().displayMetrics.density + 0.5f)
+
+    fun px2Dip(px: Int): Float =
+            (px / AppContext.getResources().displayMetrics.density + 0.5f)
+
+    fun sp2Px(sp: Float): Float =
+            (sp * AppContext.getResources().displayMetrics.scaledDensity + 0.5f)
+
+    fun sp2Px(sp: Int): Float =
+            (sp * AppContext.getResources().displayMetrics.scaledDensity + 0.5f)
 
     fun getScreenWidthPix(context: Context): Int =
             context.resources.displayMetrics.widthPixels

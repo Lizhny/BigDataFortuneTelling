@@ -19,6 +19,7 @@ import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import com.bdft.baselibrary.utils.ui.UIUtils
+import com.socks.library.KLog
 
 /**
  * ${}
@@ -203,18 +204,135 @@ class DotWidget @JvmOverloads constructor(
         }
     }
 
-    public fun setDotMatgins(left:Int,top:Int,right:Int,bottom:Int){
-        val absLeft=Math.abs(UIUtils.dip2PxToFloat(left))
-        val absTop=Math.abs(UIUtils.dip2PxToFloat(top))
-        val absRight=Math.abs(UIUtils.dip2PxToFloat(right))
-        val absBottom=Math.abs(UIUtils.dip2PxToFloat(bottom))
+    public fun setDotMatgin(left: Int, top: Int, right: Int, bottom: Int) {
+        val absLeft = Math.abs(UIUtils.dip2Px(left)).toInt()
+        val absTop = Math.abs(UIUtils.dip2Px(top)).toInt()
+        val absRight = Math.abs(UIUtils.dip2Px(right)).toInt()
+        val absBottom = Math.abs(UIUtils.dip2Px(bottom)).toInt()
 
-//        when
+        when (mDotGravity) {
+            DotGravity.GRAVITY_TOP_LEFT -> applyDotMargin(absRight, absTop, 0, 0)
+            DotGravity.GRAVITY_TOP_RIGHT -> applyDotMargin(0, absTop, absLeft, 0)
+            DotGravity.GRAVITY_BOTTOM_LEFT -> applyDotMargin(absRight, 0, 0, absBottom)
+            DotGravity.GRAVITY_BOTTOM_RIGHT -> applyDotMargin(0, 0, absLeft, absBottom)
+            DotGravity.GRAVITY_LEFT_CENTER -> applyDotMargin(absRight, 0, 0, 0)
+            DotGravity.GRAVITY_RIGHT_CENTER -> applyDotMargin(0, 0, absLeft, 0)
+            else -> {
+            }
+        }
+    }
+
+    public fun getDotMargin(): Rect {
+        val rect = Rect()
+        rect.left = UIUtils.px2Dip(Math.abs(mMarginRect.left)).toInt()
+        rect.top = UIUtils.px2Dip(Math.abs(mMarginRect.top)).toInt()
+        rect.right = UIUtils.px2Dip(Math.abs(mMarginRect.right)).toInt()
+        rect.bottom = UIUtils.px2Dip(Math.abs(mMarginRect.bottom)).toInt()
+
+        KLog.d(TAG, "getDotMargin: \n" + rect.toString())
+        return rect
+    }
+
+    public fun setDotGravity(dotGravity: DotGravity) {
+        this.mDotGravity = dotGravity
+    }
+
+    public fun getDotGravity(): DotGravity {
+        return mDotGravity
+    }
+
+    public fun setMode(mode: Mode) {
+        this.mode = mode
+    }
+
+    public fun getMode(): Mode {
+        return mode
+    }
+
+    public fun setDotColor(dotColor: Int) {
+        this.mDotColor = dotColor
+        mNeedReDraw = true
+    }
+
+    public fun getDotColor(): Int {
+        return mDotColor
+    }
+
+    public fun setDotSize(dotSize: Int) {
+        this.mDotSize = dotSize
+        mNeedReDraw = true
+    }
+
+    public fun getDotSize(): Int {
+        return mDotSize
+    }
+
+    public fun setDotRadius(dotRadius: Int) {
+        this.mDotRadius = dotRadius
+        mNeedReDraw = true
+    }
+
+    public fun getDotRadius(): Int {
+        return mDotRadius
+    }
+
+    public fun setDotText(dotText: String) {
+        this.mDotText = dotText
+        mNeedReDraw = true
+    }
+
+    public fun getDotText(): String {
+        return mDotText
+    }
+
+    public fun setDotTextColor(dotTextColor: Int) {
+        this.mDotTextColor = dotTextColor
+        mNeedReDraw = true
+    }
+
+    public fun getDotTextColor(): Int {
+        return mDotTextColor
+    }
+
+    public fun setDotTextSize(dotTextSize: Int) {
+        this.mDotTextSize = dotTextSize
+        mNeedReDraw = true
+    }
+
+    public fun getDotTextSize(): Int {
+        return mDotTextSize
+    }
+
+
+    /**
+     * 更新dot和容器的大小
+     * <p/>
+     * 原理如下：
+     * 当dot在左边，那么源控件就是相对于dot的右边，因此想移动dot一般而言都是设置dotMarginRight，然而容器container已经限制死了大小
+     * 因此需要将container进行扩展，使用padding，同时clipToPadding设置为false，使dot可以正常显示。而dot因为其gravity，因此只需要marginLeft为负值即可
+     */
+    private fun applyDotMargin(left: Int, top: Int, right: Int, bottom: Int) {
+        mMarginRect.left = -left
+        mMarginRect.top = -top
+        mMarginRect.right = -right
+        mMarginRect.bottom = -bottom
+
+        mContainer.setPadding(left, top, right, bottom)
+
+        KLog.d(TAG, "applyDotMargin:\n" + mMarginRect.toString())
+    }
+
+    public fun getTargetView(): View {
+        return mTargetView
+    }
+
+    public fun setTargetView(targetView: View) {
+        this.mTargetView = targetView
     }
 
 
     private fun initDotParams(mDotSize: Int) {
-        val dotWeightWidth = UIUtils.dip2PxToInt(mDotSize.toFloat())
+        val dotWeightWidth = UIUtils.dip2Px(mDotSize).toInt()
         val dotParams = FrameLayout.LayoutParams(dotWeightWidth, dotWeightWidth)
         when (mDotGravity) {
             DotGravity.GRAVITY_TOP_LEFT -> dotParams.gravity = Gravity.TOP and Gravity.START
@@ -235,7 +353,7 @@ class DotWidget @JvmOverloads constructor(
         val drawable: ShapeDrawable
         when (mode) {
             Mode.ROUND_RECT -> {
-                val radius = UIUtils.dip2PxToFloat(mDotRadius)
+                val radius = UIUtils.dip2Px(mDotRadius)
                 val outerRect = floatArrayOf(
                         radius, radius, radius, radius, radius, radius, radius, radius)
 
