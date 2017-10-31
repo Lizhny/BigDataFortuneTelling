@@ -1,6 +1,7 @@
 package com.bdft.baseuilib.widget.common;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.IntDef;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bdft.baselibrary.utils.ui.UIUtils;
+import com.bdft.baselibrary.utils.ui.ViewUtil;
 import com.bdft.baseuilib.R;
 import com.bdft.baseuilib.widget.indicator.DotWidget;
 import com.socks.library.KLog;
@@ -108,7 +110,7 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
                 ll_left.setOnLongClickListener(this);
                 ll_right.setVisibility(VISIBLE);
                 ll_right.setOnLongClickListener(this);
-//                ViewUtil.setViewsClickListener(this, ll_left, ll_right);
+                ViewUtil.INSTANCE.setViewsClickListener(this, ll_left, ll_right);
                 break;
             case MODE_TITLE:
                 ll_left.setVisibility(GONE);
@@ -211,22 +213,65 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
     }
 
     DotWidget mLeftDotWidget;
-    public void setLeftRedDotShow(boolean isShow){
-        if (iv_left.getVisibility()!=VISIBLE)return;
-        if (mLeftDotWidget==null){
-            mLeftDotWidget=new DotWidget(getContext(),iv_left);
-//            mLeftDotWidget.
+
+    public void setLeftRedDotShow(boolean isShow) {
+        if (iv_left.getVisibility() != VISIBLE) return;
+        if (mLeftDotWidget == null) {
+            mLeftDotWidget = new DotWidget(getContext(), iv_left);
+            mLeftDotWidget.setDotColor(Color.RED);
+            mLeftDotWidget.setDotSize((int) UIUtils.INSTANCE.dip2Px(3));
+            mLeftDotWidget.setMode(DotWidget.Mode.CIRCLE);
+        }
+        if (isShow) {
+            mLeftDotWidget.show();
+        } else {
+            mLeftDotWidget.hide(true);
         }
     }
 
 
     @Override
     public void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.ll_title_bar_left) {
+            if (mTitleBarClickListener != null) {
+                mTitleBarClickListener.onLeftClick(v, false);
+            }
+        } else if (i == R.id.ll_title_bar_right) {
+            mTitleBarClickListener.onRightClick(v, false);
+        }
 
     }
 
     @Override
     public boolean onLongClick(View v) {
+        int i = v.getId();
+        if (i == R.id.ll_title_bar_left) {
+            if (mTitleBarClickListener != null) {
+                return mTitleBarClickListener.onLeftClick(v, true);
+            }
+        } else if (i == R.id.ll_title_bar_right) {
+            if (mTitleBarClickListener != null) {
+                return mTitleBarClickListener.onRightClick(v, true);
+            }
+        }
         return false;
+    }
+
+
+    private OnTitleBarClickListener mTitleBarClickListener;
+
+    public void setOnTitleBarClickListener(OnTitleBarClickListener onTitleBarClickListener) {
+        this.mTitleBarClickListener = onTitleBarClickListener;
+    }
+
+    public OnTitleBarClickListener getOnTitleBarClickListener() {
+        return mTitleBarClickListener;
+    }
+
+    public interface OnTitleBarClickListener {
+        boolean onLeftClick(View v, boolean isLongClick);
+
+        boolean onRightClick(View v, boolean isLongClick);
     }
 }

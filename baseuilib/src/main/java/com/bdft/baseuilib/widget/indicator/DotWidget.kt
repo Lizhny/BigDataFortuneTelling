@@ -29,7 +29,6 @@ class DotWidget @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.textViewStyle
 ) : View(context, attrs, defStyleAttr) {
     private val TAG = "DotWidget"
-    public val DEBUG = true
 
     private val DEAFULT_DOT_COLOR = Color.RED
     private val DEAFULT_DOT_REDIUS = 10
@@ -403,7 +402,7 @@ class DotWidget @JvmOverloads constructor(
 
     }
 
-    var mAnimListener = object : Animation.AnimationListener {
+    private var mAnimListener = object : Animation.AnimationListener {
         override fun onAnimationRepeat(p0: Animation?) {
 
         }
