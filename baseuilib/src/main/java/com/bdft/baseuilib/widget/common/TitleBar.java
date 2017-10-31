@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,6 +39,9 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
     private ImageView iv_right;
     private TextView tv_right;
     private TextView title;
+
+    public final void setOnClickListener() {
+    }
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({MODE_LEFT, MODE_RIGHT, MODE_BOTH, MODE_TITLE})
@@ -149,7 +153,7 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
         }
     }
 
-    public void setLeftIcon(int resId) {
+    public void setLeftIcon(@DrawableRes int resId) {
         try {
             iv_left.setImageResource(resId);
             setShowLeftIcon(resId != 0);
@@ -158,7 +162,7 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
         }
     }
 
-    public void setRightIcon(int resId) {
+    public void setRightIcon(@DrawableRes int resId) {
         try {
             iv_right.setImageResource(resId);
             setShowRightIcon(resId != 0);

@@ -1,4 +1,4 @@
-package com.future.telling.listener
+package com.bdft.baselibrary.`interface`
 
 import android.view.View
 
@@ -18,6 +18,7 @@ abstract class OnDoubleClickListener : View.OnClickListener {
         override fun run() {
             KLog.d("=====", "单击" + isDouble)
             isDouble = false
+            onSingleClick()
             handler.removeCallbacks(this)
         }
     }
@@ -35,6 +36,7 @@ abstract class OnDoubleClickListener : View.OnClickListener {
     }
 
     abstract fun onDoubleClick(view: View)
+    abstract fun onSingleClick()
 
     companion object {
         private val DelayedTime = 300

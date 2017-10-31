@@ -1,14 +1,5 @@
 package com.future.telling.activity
 
-import android.databinding.DataBindingUtil.setContentView
-import android.webkit.WebSettings
-import android.support.design.widget.Snackbar
-import android.view.View
-import com.bdft.telling.R
-import com.future.telling.listener.OnDoubleClickListener
-
-import kotlinx.android.synthetic.main.activity_main.*
-
 class MainActivity  {
 
 
