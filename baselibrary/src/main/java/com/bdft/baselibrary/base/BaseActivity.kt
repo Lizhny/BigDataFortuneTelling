@@ -29,6 +29,7 @@ abstract class BaseActivity : AppCompatActivity() {
         if (permissionHelper == null) {
             permissionHelper = PermissionHelper(this)
         }
+        AppContext.initARouter()
         ARouter.getInstance().inject(this)
         onHandleIntent(intent)
     }
@@ -40,7 +41,14 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun getPermissionHelper(): PermissionHelper? = permissionHelper
 
-    protected fun <T : View> findView(@IdRes id: Int): T = super.findViewById(id) as T
+    protected fun <T : View> findView(@IdRes id: Int): T? {
+        val t = super.findViewById(id)
+        return if (t == null) {
+            null
+        } else {
+            t as T
+        }
+    }
 
     protected fun hideStatusBar() {
         val sdkVer = Build.VERSION.SDK_INT

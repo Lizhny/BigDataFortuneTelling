@@ -124,7 +124,7 @@ abstract class BaseTitleBarActivity : BaseActivity() {
     }
 
     private fun initTitlebar() {
-        titleBar ?: findView(R.id.title_bar_view)
+        titleBar = findView(R.id.title_bar_view)
 
         if (titleBar != null) {
             titleBar?.setOnClickListener(object : OnDoubleClickListener() {

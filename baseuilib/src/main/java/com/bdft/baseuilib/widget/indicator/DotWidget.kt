@@ -81,7 +81,7 @@ class DotWidget @JvmOverloads constructor(
     private var mDotTextColor = DEAFULT_DOT_TEXT_COLOR
     private var mDotTextSize = 0
 
-    private lateinit var mDotBackground: ShapeDrawable
+    private var mDotBackground: ShapeDrawable?=null
     private var mDotText = ""
     private var mIsShowing = false
     private var mNeedReDraw = false
@@ -100,11 +100,11 @@ class DotWidget @JvmOverloads constructor(
         mMarginRect = Rect()
         mIsShowing = false
 
-        buildDeafultAnim()
+        buildDefaultAnim()
 
     }
 
-    private fun buildDeafultAnim() {
+    private fun buildDefaultAnim() {
         mFadeIn = AlphaAnimation(0f, 1f)
         mFadeIn.interpolator = DecelerateInterpolator()
         mFadeIn.duration = 450

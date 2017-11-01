@@ -64,6 +64,7 @@ android {
             path "CMakeLists.txt"
         }
     }
+    buildToolsVersion '26.0.2'
 }
 
 kapt { generateStubs = true }
@@ -78,7 +79,8 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    kapt "com.android.databinding:compiler:2.3.0"
+    kapt "com.android.databinding:compiler:3.0.0"
     compile project(path: ':baselibrary')
+    compile project(path: ':baseuilib')
     compile 'com.github.zhaokaiqiang.klog:library:1.6.0'
 }
