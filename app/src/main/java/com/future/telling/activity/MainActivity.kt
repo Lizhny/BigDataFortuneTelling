@@ -1,5 +1,6 @@
 package com.future.telling.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -7,6 +8,7 @@ import android.view.View
 import android.webkit.WebSettings
 import com.bdft.baselibrary.`interface`.OnDoubleClickListener
 import com.bdft.baseuilib.base.BaseTitleBarActivity
+import com.bdft.baseuilib.widget.common.TitleBar
 import com.bdft.telling.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,7 +24,13 @@ class MainActivity : BaseTitleBarActivity() {
         initView()
     }
 
-    fun initView() {
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun initView() {
+        setTitleText(R.string.title_main)
+        setTitleMode(TitleBar.MODE_BOTH)
+        setTitleRightIcon(R.drawable.ic_camera)
+        setTitleLeftText("发现")
+        setTitleLeftIcon(R.drawable.back_left)
         setContentView(R.layout.activity_main)
         fab.setOnClickListener(object : OnDoubleClickListener() {
             override fun onSingleClick() {

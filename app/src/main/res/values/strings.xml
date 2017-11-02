@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Test</string>
+
+    <string name="title_main">主页</string>
+
+
     <string name="action_settings">设置</string>
     <string name="action_about">关于</string>
 

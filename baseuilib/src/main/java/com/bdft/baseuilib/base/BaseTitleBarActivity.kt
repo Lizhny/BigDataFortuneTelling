@@ -39,6 +39,17 @@ abstract class BaseTitleBarActivity : BaseActivity() {
         }
     }
 
+    public fun getTitleText() {
+        titleBar?.titleView?.text.toString()
+    }
+
+
+    fun setTitleMode(@TitleBar.TitleBarMode mode: Int) {
+        if (titleBar != null) {
+            titleBar?.currentMode=mode
+        }
+    }
+
     public fun setTitleText(text: String) {
         if (titleBar != null && !TextUtils.isEmpty(text)) {
             titleBar?.setTitle(text)
@@ -98,11 +109,6 @@ abstract class BaseTitleBarActivity : BaseActivity() {
             titleBar?.setTitleBarBackground(resId)
         }
     }
-
-    public fun getTitleText() {
-        titleBar?.titleView?.text.toString()
-    }
-
 
     public fun onTitleRightLongClick() {
     }
