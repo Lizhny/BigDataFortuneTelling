@@ -21,17 +21,14 @@ class MainActivity : BaseTitleBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setTitleMode(TitleBar.MODE_TITLE)
+        setTitleText(R.string.title_main)
         initView()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initView() {
-        setTitleText(R.string.title_main)
-        setTitleMode(TitleBar.MODE_BOTH)
-        setTitleRightIcon(R.drawable.ic_camera)
-        setTitleLeftText("发现")
-        setTitleLeftIcon(R.drawable.back_left)
-        setContentView(R.layout.activity_main)
+
         fab.setOnClickListener(object : OnDoubleClickListener() {
             override fun onSingleClick() {
 

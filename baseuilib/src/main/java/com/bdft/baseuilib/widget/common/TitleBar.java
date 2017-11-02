@@ -40,9 +40,6 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
     private TextView tv_right;
     private TextView title;
 
-    public final void setOnClickListener() {
-    }
-
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({MODE_LEFT, MODE_RIGHT, MODE_BOTH, MODE_TITLE})
     public @interface TitleBarMode {
@@ -117,10 +114,10 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
                 ViewUtil.INSTANCE.setViewsClickListener(this, ll_left, ll_right);
                 break;
             case MODE_TITLE:
-                ll_left.setVisibility(GONE);
+                ll_left.setVisibility(INVISIBLE);
                 ll_left.setOnClickListener(null);
                 ll_left.setOnLongClickListener(null);
-                ll_right.setVisibility(GONE);
+                ll_right.setVisibility(INVISIBLE);
                 ll_right.setOnClickListener(null);
                 ll_right.setOnLongClickListener(null);
                 break;
@@ -141,7 +138,7 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
 
     public void setTitle(String titleStr) {
         if (TextUtils.isEmpty(titleStr)) {
-            title.setText("");
+            title.setText(R.string.wrong);
         } else {
             title.setText(titleStr);
         }
@@ -149,7 +146,9 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
 
     public void setTitle(@StringRes int stringResId) {
         if (stringResId > 0) {
-            title.setText("");
+            title.setText(stringResId);
+        }else {
+            title.setText(R.string.wrong);
         }
     }
 
@@ -205,6 +204,10 @@ public class TitleBar extends FrameLayout implements View.OnClickListener, View.
 
     public void setRigTextColor(@ColorRes int resId) {
         tv_left.setTextColor(UIUtils.INSTANCE.getResourceColor(resId));
+    }
+
+    public void setTitleTextColor(@ColorRes int resId) {
+        title.setTextColor(UIUtils.INSTANCE.getResourceColor(resId));
     }
 
 

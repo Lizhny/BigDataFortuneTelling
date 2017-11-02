@@ -33,100 +33,105 @@ abstract class BaseTitleBarActivity : BaseActivity() {
         initTitlebar()
     }
 
-    public fun setTitleText(@StringRes resId: Int) {
+    fun setTitleText(@StringRes resId: Int) {
         if (titleBar != null && resId != 0) {
             titleBar?.setTitle(resId)
         }
     }
 
-    public fun getTitleText() {
+    fun getTitleText() {
         titleBar?.titleView?.text.toString()
     }
 
-
     fun setTitleMode(@TitleBar.TitleBarMode mode: Int) {
         if (titleBar != null) {
-            titleBar?.currentMode=mode
+            titleBar?.currentMode = mode
         }
     }
 
-    public fun setTitleText(text: String) {
+    fun setTitleText(text: String) {
         if (titleBar != null && !TextUtils.isEmpty(text)) {
             titleBar?.setTitle(text)
         }
     }
 
-    public fun setTitleLeftText(@StringRes resId: Int) {
+    fun setTitleLeftText(@StringRes resId: Int) {
         if (titleBar != null && resId != 0) {
             titleBar?.setLeftText(resId)
         }
     }
 
-    public fun setTitleLeftText(text: String) {
+    fun setTitleLeftText(text: String) {
         if (titleBar != null && !TextUtils.isEmpty(text)) {
             titleBar?.setLeftText(text)
         }
     }
 
-    public fun setTitleRightText(@StringRes resId: Int) {
+    fun setTitleRightText(@StringRes resId: Int) {
         if (titleBar != null && resId != 0) {
             titleBar?.setRightText(resId)
         }
     }
 
-    public fun setTitleRightText(text: String) {
+    fun setTitleRightText(text: String) {
         if (titleBar != null && !TextUtils.isEmpty(text)) {
             titleBar?.setRightText(text)
         }
     }
 
-    public fun setLeftTextColor(@ColorRes resId: Int) {
+    fun setLeftTextColor(@ColorRes resId: Int) {
         if (titleBar != null && resId != 0) {
             titleBar?.setLeftTextColor(resId)
         }
     }
 
-    public fun setRightTextColor(@ColorRes resId: Int) {
+    fun setRightTextColor(@ColorRes resId: Int) {
         if (titleBar != null && resId != 0) {
             titleBar?.setRigTextColor(resId)
         }
     }
 
-    public fun setTitleLeftIcon(@DrawableRes resId: Int) {
+    fun setTitleTextColor(@ColorRes resId: Int) {
+        if (titleBar != null && resId != 0) {
+            titleBar?.setTitleTextColor(resId)
+        }
+    }
+
+    fun setTitleLeftIcon(@DrawableRes resId: Int) {
         if (titleBar != null) {
             titleBar?.setLeftIcon(resId)
         }
     }
 
-    public fun setTitleRightIcon(@DrawableRes resId: Int) {
+    fun setTitleRightIcon(@DrawableRes resId: Int) {
         if (titleBar != null) {
             titleBar?.setRightIcon(resId)
         }
     }
 
-    public fun setTitleBackground(@ColorRes resId: Int) {
+    fun setTitleBackground(@ColorRes resId: Int) {
         if (titleBar != null) {
             titleBar?.setTitleBarBackground(resId)
         }
     }
 
-    public fun onTitleRightLongClick() {
+    fun onTitleRightLongClick() {
     }
 
-    public fun onTitleLeftLongClick() {
+    fun onTitleLeftLongClick() {
     }
 
-    public fun onTitleRightClick() {
+    fun onTitleRightClick() {
     }
 
-    public fun onTitleLeftClick() {
+    fun onTitleLeftClick() {
         finish()
     }
 
-    public fun onTitleDoubleClick() {
+    fun onTitleDoubleClick() {
     }
 
-    public fun onTitleSingleClick() {
+    fun onTitleSingleClick() {
     }
 
     private fun initTitlebar() {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Base UI Lib</string>
+    <string name="wrong">Wrong</string>
 </resources>

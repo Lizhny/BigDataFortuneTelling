@@ -5,6 +5,7 @@
     android:layout_height="50dp"
     android:orientation="horizontal"
     android:weightSum="10"
+    android:background="@color/action_bar_bg"
     tools:background="@color/action_bar_bg">
 
     <LinearLayout
@@ -30,8 +31,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="test" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 
@@ -47,17 +47,16 @@
         android:paddingRight="8dp"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="大数据算命" />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@id/ll_title_bar_right"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
-        android:visibility="gone"
         android:gravity="center_vertical|end"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@id/tx_title_bar_right"
@@ -67,8 +66,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            tools:text="test" />
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@id/ic_title_bar_right"
