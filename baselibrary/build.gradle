@@ -12,15 +12,25 @@ android {
         versionName rootProject.ext.android.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug{
+            resValue("string","PORT_NUMBER","8083")
+        }
     }
     buildToolsVersion '26.0.2'
+    lintOptions{
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -28,11 +38,15 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile rootProject.ext.dependencies.appcompat_v7
+    compile rootProject.ext.dependencies.design
+    compile rootProject.ext.dependencies.support_util
     //log
-    compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
+    compile rootProject.ext.dependencies.k_log
     //ARouter
-    compile 'com.alibaba:arouter-api:1.2.2'
+    compile rootProject.ext.dependencies.arouter_api
+    //EventBus
+    compile rootProject.ext.dependencies.event_bus
 
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -3,7 +3,7 @@ ext {
     android = [
             compileSdkVersion: 25,
             buildToolsVersion: "25.0.0",
-            minSdkVersion    : 17,
+            minSdkVersion    : 21,
             targetSdkVersion : 25,
             versionCode      : 1,
             versionName      : "1.0"
@@ -23,7 +23,10 @@ ext {
             appcompat_v7    : 'com.android.support:appcompat-v7:25.2.0',
             design          : 'com.android.support:design:25.2.0',
             support_util    : 'com.android.support:support-core-utils:25.1.0',
+            k_log           : 'com.github.zhaokaiqiang.klog:library:1.6.0',
+            event_bus       : 'org.greenrobot:eventbus:3.0.0',
             arouter_api     : 'com.alibaba:arouter-api:1.2.2',
             arouter_compiler: 'com.alibaba:arouter-compiler:1.1.3'
+
     ]
 }

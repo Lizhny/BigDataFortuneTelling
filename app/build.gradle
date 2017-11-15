@@ -13,6 +13,7 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
         externalNativeBuild {
@@ -29,7 +30,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ moduleName : project.getName() ]
+                arguments = [moduleName: project.getName()]
             }
         }
     }
@@ -68,20 +69,23 @@ android {
     buildToolsVersion '26.0.2'
 }
 
-kapt { generateStubs = true }
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
+    //EventBus
+    compile rootProject.ext.dependencies.event_bus
+    compile rootProject.ext.dependencies.design
+
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     kapt "com.android.databinding:compiler:3.0.0"
-    compile project(path: ':baselibrary')
-    compile project(path: ':baseuilib')
-    compile 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    if (!isModule.toBoolean()) {
+        compile project(':baselibrary')
+        compile project(':baseuilib')
+        annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    } else {
+        compile project(':baselibrary')
+        compile project(':baseuilib')
+
+    }
 }
