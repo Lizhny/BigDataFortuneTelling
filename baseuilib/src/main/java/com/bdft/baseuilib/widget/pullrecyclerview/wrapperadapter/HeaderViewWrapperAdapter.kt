@@ -162,7 +162,7 @@ class HeaderViewWrapperAdapter(recyclerView: RecyclerView,
         val adapterItemCount = mWrappedAdapter!!.itemCount
         if (position >= numHeaders) {
             if (adjustPos < adapterItemCount) {
-                //如果是adpter返回的范围内，则取adapter的ItemViewType
+                //如果是adapter返回的范围内，则取adapter的ItemViewType
                 return mWrappedAdapter!!.getItemViewType(adjustPos)
             }
         } else if (position < numHeaders) {
