@@ -52,7 +52,7 @@ object ViewUtil {
             bounds.right += right
             bounds.bottom += bottom
 
-            KLog.d("bouns", "rect - top" + bounds.top + "  - right" + bounds.right)
+            KLog.d("bounds", "rect - top" + bounds.top + "  - right" + bounds.right)
             val touchDelegate = TouchDelegate(bounds, view)
             if (view.parent is View) {
                 parent.touchDelegate = touchDelegate
